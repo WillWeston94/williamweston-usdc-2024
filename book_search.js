@@ -103,6 +103,7 @@ if (test2result.Results.length == 1) {
     console.log("Received:", test2result.Results.length);
 }
 
+/** Negative result for a non-existent term test. */
 const test3result = findSearchTermInBooks("Weston", twentyLeaguesIn);
 const negativeOutput = { SearchTerm: "Weston", Results: [] };
 
@@ -114,6 +115,7 @@ if (JSON.stringify(negativeOutput) === JSON.stringify(test3result)) {
     console.log("Received:", test3result);
 }
 
+/** Case-sensitive test. */
 const test4result = findSearchTermInBooks("The", twentyLeaguesIn);
 const caseSensitiveOutput = { SearchTerm: "The", Results: [] };
 
@@ -125,6 +127,7 @@ if (JSON.stringify(caseSensitiveOutput) === JSON.stringify(test4result)) {
     console.log("Received:", test4result);
 }
 
+/** Special Character search terms test. */
 const test5result = findSearchTermInBooks(";)", twentyLeaguesIn);
 const specialCharacterOutput = { SearchTerm: ";)", Results: [] };
 
@@ -136,6 +139,7 @@ if (JSON.stringify(specialCharacterOutput) === JSON.stringify(test5result)) {
     console.log("Received:", test5result);
 }
 
+/** User does not include search term test. */
 const test6result = findSearchTermInBooks("", twentyLeaguesIn);
 const userEmptySearch = { SearchTerm: "", Results: [] };
 
@@ -145,4 +149,6 @@ if (JSON.stringify(userEmptySearch) === JSON.stringify(test6result)) {
     console.log("FAIL: Test 6");
     console.log("Expected:", userEmptySearch);
     console.log("Received:", test6result);
+}
+
 }
