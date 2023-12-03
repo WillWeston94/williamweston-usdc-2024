@@ -150,3 +150,5 @@ if (JSON.stringify(userEmptySearch) === JSON.stringify(test6result)) {
     console.log("Expected:", userEmptySearch);
     console.log("Received:", test6result);
 }
+
+}
