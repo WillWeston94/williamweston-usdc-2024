@@ -19,7 +19,7 @@
  * @returns {JSON} - Search results.
  * */ 
 
-function index(scannedTextObj) {
+function createIndex(scannedTextObj) {
     let index = {};
 
     scannedTextObj.forEach(book => {
@@ -42,15 +42,12 @@ function index(scannedTextObj) {
 }
 
  function findSearchTermInBooks(searchTerm, scannedTextObj) {
-    /** You will need to implement your search and 
-     * return the appropriate object here. */
-
-    var result = {
-        "SearchTerm": "",
-        "Results": []
+    const index = createIndex(scannedTextObj);
+    const results = index[searchTerm] || [];
+    return {
+        SearchTerm: searchTerm,
+        Results: results
     };
-    
-    return result; 
 }
 
 /** Example input object. */
@@ -140,7 +137,13 @@ if (JSON.stringify(negativeOutput) === JSON.stringify(test3result)) {
 
 /** Case-sensitive test. */
 const test4result = findSearchTermInBooks("The", twentyLeaguesIn);
-const caseSensitiveOutput = { SearchTerm: "The", Results: [] };
+const caseSensitiveOutput = { SearchTerm: "The", Results: [
+    {
+        "ISBN": "9780000528531",
+        "Page": 31,
+        "Line": 8
+    }
+]};
 
 if (JSON.stringify(caseSensitiveOutput) === JSON.stringify(test4result)) {
     console.log("PASS: Test 4");
@@ -175,7 +178,7 @@ if (JSON.stringify(userEmptySearch) === JSON.stringify(test6result)) {
 }
 
 /** Index test. */
-const indexResult = index(twentyLeaguesIn);
+const indexResult = createIndex(twentyLeaguesIn);
 const indexOutput = [
     {
         "ISBN": "9780000528531",
@@ -194,7 +197,7 @@ if (JSON.stringify(indexOutput) === JSON.stringify(indexResult["now"])) {
 
 /** Index test for my name a non-existent word. */
 
-const indexResult2 = index(twentyLeaguesIn);
+const indexResult2 = createIndex(twentyLeaguesIn);
 if (!indexResult2["Weston"] || indexResult2["Weston"].length === 0) {
     console.log("PASS: Test 8");
 } else {
