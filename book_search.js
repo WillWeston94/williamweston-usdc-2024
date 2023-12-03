@@ -102,3 +102,47 @@ if (test2result.Results.length == 1) {
     console.log("Expected:", twentyLeaguesOut.Results.length);
     console.log("Received:", test2result.Results.length);
 }
+
+const test3result = findSearchTermInBooks("Weston", twentyLeaguesIn);
+const negativeOutput = { SearchTerm: "Weston", Results: [] };
+
+if (JSON.stringify(negativeOutput) === JSON.stringify(test3result)) {
+    console.log("PASS: Test 3");
+} else {
+    console.log("FAIL: Test 3");
+    console.log("Expected:", negativeOutput);
+    console.log("Received:", test3result);
+}
+
+const test4result = findSearchTermInBooks("The", twentyLeaguesIn);
+const caseSensitiveOutput = { SearchTerm: "The", Results: [] };
+
+if (JSON.stringify(caseSensitiveOutput) === JSON.stringify(test4result)) {
+    console.log("PASS: Test 4");
+} else {
+    console.log("FAIL: Test 4");
+    console.log("Expected:", caseSensitiveOutput);
+    console.log("Received:", test4result);
+}
+
+const test5result = findSearchTermInBooks(";)", twentyLeaguesIn);
+const specialCharacterOutput = { SearchTerm: ";)", Results: [] };
+
+if (JSON.stringify(specialCharacterOutput) === JSON.stringify(test5result)) {
+    console.log("PASS: Test 5");
+} else {
+    console.log("FAIL: Test 5");
+    console.log("Expected:", specialCharacterOutput);
+    console.log("Received:", test5result);
+}
+
+const test6result = findSearchTermInBooks("", twentyLeaguesIn);
+const userEmptySearch = { SearchTerm: "", Results: [] };
+
+if (JSON.stringify(userEmptySearch) === JSON.stringify(test6result)) {
+    console.log("PASS: Test 6");
+} else {
+    console.log("FAIL: Test 6");
+    console.log("Expected:", userEmptySearch);
+    console.log("Received:", test6result);
+}
