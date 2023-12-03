@@ -18,6 +18,29 @@
  * @param {JSON} scannedTextObj - A JSON object representing the scanned text.
  * @returns {JSON} - Search results.
  * */ 
+
+function index(scannedTextObj) {
+    let index = {};
+
+    scannedTextObj.forEach(book => {
+        book.Content.forEach(content => {
+            const words = content.Text.match(/[\w-]+/g);
+            words.forEach(word => {
+                if (!index[word]) {
+                    index[word] = [];
+                }
+                index[word].push({
+                    ISBN: book.ISBN,
+                    Page: content.Page,
+                    Line: content.Line
+                });
+            });
+        });
+    });
+
+    return index;
+}
+
  function findSearchTermInBooks(searchTerm, scannedTextObj) {
     /** You will need to implement your search and 
      * return the appropriate object here. */
@@ -149,4 +172,33 @@ if (JSON.stringify(userEmptySearch) === JSON.stringify(test6result)) {
     console.log("FAIL: Test 6");
     console.log("Expected:", userEmptySearch);
     console.log("Received:", test6result);
+}
+
+/** Index test. */
+const indexResult = index(twentyLeaguesIn);
+const indexOutput = [
+    {
+        "ISBN": "9780000528531",
+        "Page": 31,
+        "Line": 8
+    }
+];
+
+if (JSON.stringify(indexOutput) === JSON.stringify(indexResult["now"])) {
+    console.log("PASS: Test 7");
+} else {
+    console.log("FAIL: Test 7");
+    console.log("Expected:", indexOutput);
+    console.log("Received:", indexResult["now"]);
+}
+
+/** Index test for my name a non-existent word. */
+
+const indexResult2 = index(twentyLeaguesIn);
+if (!indexResult2["Weston"] || indexResult2["Weston"].length === 0) {
+    console.log("PASS: Test 8");
+} else {
+    console.log("FAIL: Test 8");
+    console.log("Expected:", "undefined");
+    console.log("Received:", indexResult2["Weston"]);
 }
