@@ -8,6 +8,10 @@ There are three files in this repository we would like you to focus on:
 1. `tester.html`: An HTML file that will run your code.
 1. `book_search.js`: A JavaScript source code file that you should edit for your assessment submission.
 
+## Program Functionality
+
+The `book_search.js` file includes a solution for efficiently searching terms within a collection of scanned book texts. The main functions, `createIndex` and `findSearchTermInBooks`, work together to index book contents and then search this index for specific terms. The code handles various scenarios, including case sensitivity and searches for non-existent terms. It’s designed to offer quick and accurate search results, improving usability and performance for large datasets. Additionally, several unit tests are provided to validate the functionality of these methods under different conditions, such as case sensitivity, and handling empty search queries.
+
 ## Testing your code
 
 You will need to open the file `tester.html` in a browser to run the code that is contained in `book_search.js`. The output from running that code will appear in the browser's web developer console. Here is documentation for opening the web developer tools for Firefox:
